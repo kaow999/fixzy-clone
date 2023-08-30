@@ -130,7 +130,7 @@ export default function Detail({ navigation, route }) {
         <Button
           mode="contained"
           onPress={() =>
-            navigation.navigate("Contact", {
+            navigation.navigate("GoogleMaps", {
               userInfo: userInfo,
               data: {
                 ...data,

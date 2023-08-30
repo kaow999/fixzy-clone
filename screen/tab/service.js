@@ -5,6 +5,7 @@ import Contact from "../../component/service/contact";
 import MySearchBarScreen from "../../component/service/search/search-bar";
 import Detail from "../../component/service/detail";
 import ServiceContent from "../../component/service/service-content";
+import GoogleMaps from "../../component/service/map";
 
 const Service = createNativeStackNavigator();
 
@@ -57,6 +58,15 @@ export default function ServiceScreen({ route }) {
         options={{
           headerBackTitleVisible: false,
           headerTitle: "ข้อมูลติดต่อ",
+        }}
+      />
+      <Service.Screen
+        name="GoogleMaps"
+        initialParams={{ userInfo: userInfo }}
+        component={GoogleMaps}
+        options={{
+          headerBackTitleVisible: false,
+          headerTitle: "Map",
         }}
       />
     </Service.Navigator>

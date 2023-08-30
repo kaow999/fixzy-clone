@@ -8,13 +8,13 @@ const Tab = createMaterialTopTabNavigator();
 
 export default function ReportScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Report Screen</Text>
-    </View>
-    // <Tab.Navigator>
-    //   <Tab.Screen name="ReportTap" component={Report} />
-    //   <Tab.Screen name="HistoryTap" component={History} />
-    // </Tab.Navigator>
+    // <View style={styles.container}>
+    //   <Text style={styles.text}>Report Screen</Text>
+    // </View>
+    <Tab.Navigator>
+      <Tab.Screen name="ReportTap" component={Report} />
+      <Tab.Screen name="HistoryTap" component={History} />
+    </Tab.Navigator>
   );
 }
 

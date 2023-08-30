@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // import axios from "axios";
 import { Button } from "react-native-paper";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { launchImageLibraryAsync } from "expo-image-picker";
+import { launchImageLibrary } from "react-native-image-picker";
 import {
   Text,
   View,
@@ -19,14 +19,30 @@ export default function Contact({ navigation, route }) {
   const [name, setName] = useState(userInfo.name);
   const [email, setEmail] = useState(userInfo.email);
   const [mobile, setMobile] = useState(null);
-  const [imageURIList, setImageURIList] = useState([]);
+  const [selectedImage, setSelectedImage] = useState([]);
 
   async function pickImage() {
-    const image = await launchImageLibraryAsync();
-    if (image.canceled) {
-      alert("No image selected");
-    } else {
-      setImageURIList([...imageURIList, image.assets[0].uri]);
+    try {
+      const options = {
+        mediaType: "photo",
+        quality: 1,
+        selectionLimit: 0,
+      };
+
+      launchImageLibrary(options, (response) => {
+        console.log(response.assets);
+
+        if (response.didCancel) {
+          console.log("Image picking cancelled");
+        } else if (response.error) {
+          console.log("Image picking error: ", response.error);
+        } else if (response.assets) {
+          console.log("Selected image URI: ", response.assets);
+          setSelectedImage(response.assets);
+        }
+      });
+    } catch (error) {
+      console.log("Error picking image: ", error);
     }
   }
 
@@ -74,32 +90,32 @@ export default function Contact({ navigation, route }) {
                 onChangeText={setMobile}
               />
             </View>
-            <View
-              style={{
-                flex: 6,
-              }}
-            >
-              <ScrollView>
-                {imageURIList.map((uri, i) => (
+            {selectedImage && (
+              <View style={styles.imageUploadContainer}>
+                {selectedImage.map((i) => (
                   <Image
-                    style={{ height: 300, marginVertical: 30 }}
-                    key={uri + i}
-                    source={{ uri }}
+                    key={i.fileName}
+                    source={{ uri: i.uri }}
+                    style={styles.uploadedImage}
                   />
                 ))}
-              </ScrollView>
+              </View>
+            )}
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <TouchableOpacity
+                style={{ backgroundColor: "black", padding: 30 }}
+                onPress={pickImage}
+              >
+                <Text style={{ color: "white" }}>Add</Text>
+              </TouchableOpacity>
             </View>
           </ScrollView>
-          <View
-            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-          >
-            <TouchableOpacity
-              style={{ backgroundColor: "black", padding: 30 }}
-              onPress={pickImage}
-            >
-              <Text style={{ color: "white" }}>Add picture</Text>
-            </TouchableOpacity>
-          </View>
 
           <View style={styles.divider} />
           <View style={styles.inlineContainer}>
@@ -158,23 +174,15 @@ const styles = StyleSheet.create({
     backgroundColor: "lightgray",
   },
   imageUploadContainer: {
-    alignItems: "center",
-    marginTop: 20,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    marginVertical: 20,
   },
   uploadedImage: {
-    width: 200,
-    height: 200,
+    width: 100,
+    height: 100,
     resizeMode: "cover",
-    marginBottom: 10,
-  },
-  uploadButton: {
-    backgroundColor: "lightblue",
-    padding: 10,
-    borderRadius: 8,
-  },
-  uploadButtonText: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "bold",
+    marginBottom: 1,
   },
 });
