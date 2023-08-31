@@ -9,7 +9,7 @@ import TermOfService from "../../component/service/term-of-service";
 
 const Service = createNativeStackNavigator();
 
-export default function ServiceScreen({ route }) {
+export default function ServiceTab({ route }) {
   const { userInfo } = route.params;
 
   return (

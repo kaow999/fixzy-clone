@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-export default function History() {
+export default function CompletedJobs() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>asg</Text>
+      <Text style={styles.text}>adsg</Text>
     </View>
   );
 }

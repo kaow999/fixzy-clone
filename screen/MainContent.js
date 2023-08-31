@@ -2,10 +2,10 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
-import ServiceScreen from "./tab/service";
-import MarketScreen from "./tab/market";
-import ReportScreen from "./tab/report";
-import OtherScreen from "./tab/other";
+import ServiceTab from "./tab/ServiceTab";
+import MarketTab from "./tab/MarketTab";
+import ServiceListTab from "./tab/ServiceListTab";
+import MoreTab from "./tab/MoreTab";
 
 const Tab = createBottomTabNavigator();
 
@@ -17,7 +17,7 @@ export default function MainContentScreen({ route }) {
       <Tab.Navigator initialRouteName="Service">
         <Tab.Screen
           name="Service"
-          component={ServiceScreen}
+          component={ServiceTab}
           initialParams={{ userInfo: userInfo }}
           options={{
             tabBarLabel: "บริการ",
@@ -29,7 +29,7 @@ export default function MainContentScreen({ route }) {
         />
         <Tab.Screen
           name="Market"
-          component={MarketScreen}
+          component={MarketTab}
           options={{
             tabBarLabel: "Market",
             tabBarIcon: ({ color, size }) => (
@@ -38,20 +38,20 @@ export default function MainContentScreen({ route }) {
           }}
         />
         <Tab.Screen
-          name="Report"
-          component={ReportScreen}
+          name="ServiceList"
+          component={ServiceListTab}
           options={{
-            tabBarLabel: "Report",
+            tabBarLabel: "Service List",
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="ios-document" color={color} size={size} />
             ),
           }}
         />
         <Tab.Screen
-          name="Other"
-          component={OtherScreen}
+          name="More"
+          component={MoreTab}
           options={{
-            tabBarLabel: "Other",
+            tabBarLabel: "More",
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="ios-options" color={color} size={size} />
             ),

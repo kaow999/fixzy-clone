@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-export default function Report() {
+export default function Orders() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>adsg</Text>
+      <Text style={styles.text}>asg</Text>
     </View>
   );
 }

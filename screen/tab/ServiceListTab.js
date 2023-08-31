@@ -1,19 +1,22 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import Report from "../../component/report/report";
-import History from "../../component/report/history";
+import CompletedJobs from "../../component/report/CompletedJobs";
+import Orders from "../../component/report/Orders";
 
 const Tab = createMaterialTopTabNavigator();
 
-export default function ReportScreen() {
+export default function ServiceListTab() {
   return (
-    // <View style={styles.container}>
-    //   <Text style={styles.text}>Report Screen</Text>
-    // </View>
     <Tab.Navigator>
-      <Tab.Screen name="ReportTap" component={Report} />
-      <Tab.Screen name="HistoryTap" component={History} />
+      <Tab.Screen name="Orders" component={Orders} />
+      <Tab.Screen
+        name="Completed Jobs"
+        component={CompletedJobs}
+        options={{
+          tabBarLabel: "Service List",
+        }}
+      />
     </Tab.Navigator>
   );
 }

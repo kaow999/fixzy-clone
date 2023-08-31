@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Button, TouchableOpacity } from "react-native";
 
-export default function OtherScreen({ navigation }) {
+export default function MoreTab({ navigation }) {
   const handleBackToLogin = () => {
     navigation.navigate("Login");
   };
