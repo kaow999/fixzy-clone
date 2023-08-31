@@ -42,6 +42,7 @@ export default function Detail({ navigation, route }) {
             <List.Item
               title="เงื่อนไข"
               right={() => <List.Icon icon="arrow-right" />}
+              onPress={() => navigation.navigate("TermOfService")}
             />
             <List.Item
               title={data.name}
@@ -130,7 +131,7 @@ export default function Detail({ navigation, route }) {
         <Button
           mode="contained"
           onPress={() =>
-            navigation.navigate("GoogleMaps", {
+            navigation.navigate("Contact", {
               userInfo: userInfo,
               data: {
                 ...data,

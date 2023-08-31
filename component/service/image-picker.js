@@ -26,7 +26,6 @@ export default function ImagePickerScreen() {
     } catch (error) {
       console.log("Error picking image: ", error);
     }
-    r;
   }
   return (
     <SafeAreaProvider>

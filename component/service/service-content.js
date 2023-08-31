@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react";
-// import axios from "axios";
+import axios from "axios";
 import { Button, Card } from "react-native-paper";
 import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { services } from "../../_mock/service";
+// import { services } from "../../_mock/service";
 
 export default function ServiceContent({ route, navigation }) {
   const { userInfo } = route.params;
-  // const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
 
-  // const fetchData = async () => {
-  //   await axios
-  //     .get(`http://localhost:1337/api/services?populate=*`)
-  //     .then((res) => {
-  //       setData(res.data.data);
-  //     });
-  // };
+  const fetchData = async () => {
+    await axios
+      .get(`http://localhost:1337/api/services?populate=*`)
+      .then((res) => {
+        setData(res.data.data);
+      });
+  };
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <SafeAreaProvider>
@@ -56,7 +56,7 @@ export default function ServiceContent({ route, navigation }) {
                 flexWrap: "wrap",
               }}
             >
-              {services.map((i) => (
+              {data.map((i) => (
                 <Card
                   key={i.id}
                   theme={{
