@@ -24,7 +24,7 @@ export default function ServiceContent({ route, navigation }) {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1 }}>
-        <View style={styles.container}>
+        <View>
           <Button
             mode="contained"
             style={{ marginHorizontal: 10, marginVertical: 5 }}
@@ -102,9 +102,6 @@ export default function ServiceContent({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   tabContainer: {
     flex: 1,
   },
